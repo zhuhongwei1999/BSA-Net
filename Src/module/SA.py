@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from Src.BSANet import weight_init
+from Src.module.weight_init import weight_init
 from torch.nn.parameter import Parameter
 
 class sa_layer(nn.Module):

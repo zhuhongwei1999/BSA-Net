@@ -1,5 +1,5 @@
 import torch.nn as nn
-from Src.BSANet import weight_init
+from Src.module.weight_init import weight_init
 
 class BasicConv2d(nn.Module):
     def __init__(self, in_planes, out_planes, kernel_size, stride=1, padding=0, dilation=1):

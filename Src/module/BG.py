@@ -1,6 +1,6 @@
 import torch.nn as nn
 import torch.nn.functional as F
-from Src.BSANet import weight_init
+from Src.module.weight_init import weight_init
 
 # Background Guide Module
 class Spade(nn.Module):

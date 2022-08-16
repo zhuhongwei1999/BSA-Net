@@ -1,5 +1,5 @@
 import torch.nn as nn
-from Src.BSANet import weight_init
+from Src.module.weight_init import weight_init
 
 class MSCA(nn.Module):
     def __init__(self, channels=64, r=4):

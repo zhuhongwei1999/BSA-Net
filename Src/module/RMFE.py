@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
-from Src.BSANet import weight_init
-from BasicConv2d import BasicConv2d
+from Src.module.weight_init import weight_init
+from Src.module.BasicConv2d import BasicConv2d
 
 # RF2B: RMFE module in paper.
 class RF2B(nn.Module):

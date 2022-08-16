@@ -2,9 +2,6 @@ import os
 from PIL import Image
 import torch.utils.data as data
 import torchvision.transforms as transforms
-import cv2
-import numpy as np
-import torch
 
 
 class CamObjDataset(data.Dataset):

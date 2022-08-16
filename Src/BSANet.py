@@ -3,12 +3,12 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.parameter import Parameter
 from Src.backbone.Res2Net_v1b import res2net50_v1b_26w_4s
-from module.BasicConv2d import BasicConv2d
-from module.RMFE import RF2B
-from module.SA import sa_layer
-from module.Fusion import Fusion, aggregation
-from module.BG import Spade
-from module.SEA import MSCA
+from Src.module.BasicConv2d import BasicConv2d
+from Src.module.RMFE import RF2B
+from Src.module.SA import sa_layer
+from Src.module.Fusion import Fusion, aggregation
+from Src.module.BG import Spade
+from Src.module.SEA import MSCA
 
 class BSANet(nn.Module):
     def __init__(self):
