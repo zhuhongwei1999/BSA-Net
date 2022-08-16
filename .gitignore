@@ -1,5 +1,7 @@
+.gitignore
 .idea
-Dataset/*
+Dataset/TestDataset
+Dataset/TrainDataset
 evaluation/GT/*
 evaluation/Result/*
 *.pth

@@ -4,15 +4,13 @@ This repo is an official implementation of BSA-Net,  which has been published in
 
 >Authors: Hongwei Zhu, Peng Li, Haoran Xie, Xuefeng Yan, Dong Liang, Dapeng Chen, Mingqiang Wei and Jing Qin
 
-[toc]
-
 ## Overview
 
 ### Intro
 
 The main pipeline of our BSA-Net is shown as the following,
 
-![](C:\Users\zhw\Desktop\BSANet\figure\pipeline.png)
+![](https://github.com/zhuhongwei1999/BSA-Net/blob/master/figure/pipeline.png)
 
 BSA-Net simulates the procedure of how humans to detect camouflaged objects. We adopt Res2Net as the backbone encoder. After capturing rich context information by the Residual Multi-scale Feature Extractor (RMFE), we design the Separated Attention (SEA) module to distinguish the subtle difference of foreground and background. The Boundary Guider (BG) module is included in the SEA module to strengthen the model’s ability to understand the boundary. Finally, we employ the Shuffle Attention (SHA) block and a feature fusion module to refine our COD result.
 
@@ -20,9 +18,9 @@ BSA-Net simulates the procedure of how humans to detect camouflaged objects. We 
 
 Here's the experimental result.
 
-![](C:\Users\zhw\Desktop\BSANet\figure\quant-result.png)
+![](https://github.com/zhuhongwei1999/BSA-Net/blob/master/figure/quant-result.png)
 
-![visual-result](C:\Users\zhw\Desktop\BSANet\figure\visual-result.png)
+![](https://github.com/zhuhongwei1999/BSA-Net/blob/master/figure/visual-result.png)
 
 ## Usage
 
