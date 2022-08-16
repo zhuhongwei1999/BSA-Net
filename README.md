@@ -26,7 +26,7 @@ Here's the experimental result.
 
 ### Dependencies
 
-Please refer to requirements.txt
+Please refer to [requirements.txt](https://github.com/zhuhongwei1999/BSA-Net/blob/master/requirements.txt)
 
 Installing necessary packages: `pip install -r requirements.txt`.
 
