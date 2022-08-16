@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 import os
-import sys
-import time
 
-cmd1 = 'python MyTrain.py'
-cmd2 = 'python MyTest.py'
-cmd4 = 'python evaluation.py'
+train_cmd = 'python MyTrain.py'
+test_cmd = 'python MyTest.py'
+eval_cmd = 'python evaluation.py'
 
 if __name__ == '__main__':
-    os.system(cmd1)
-    os.system(cmd2)
+    # os.system(train_cmd)
+    os.system(test_cmd)
     os.chdir('evaluation')
-    os.system(cmd4)
+    os.system(eval_cmd)

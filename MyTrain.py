@@ -1,6 +1,6 @@
 import torch
 import argparse
-from Src.SINet import F3Net
+from Src.BSANet import BSANet
 from Src.utils.Dataloader import get_loader
 from Src.utils.trainer import trainer, adjust_lr
 from apex import amp
@@ -9,18 +9,20 @@ import torch.nn.functional as F
 
 def structure_loss(pred, mask):
 
+    # BCE loss
     k = nn.Softmax2d()
-    weit  = torch.abs(pred-mask)
+    weit = torch.abs(pred-mask)
     weit = k(weit)
-    wbce  = F.binary_cross_entropy_with_logits(pred, mask, reduce='none')
-    wbce  = (weit*wbce).sum(dim=(2,3))/weit.sum(dim=(2,3))
+    wbce = F.binary_cross_entropy_with_logits(pred, mask, reduce='none')
+    wbce = (weit * wbce).sum(dim=(2, 3))/weit.sum(dim=(2, 3))
 
-    pred  = torch.sigmoid(pred)
-    inter = ((pred*mask)*weit).sum(dim=(2,3))
-    union = ((pred+mask)*weit).sum(dim=(2,3))
-    wiou  = 1-(inter+1)/(union-inter+1)
+    # IOU loss
+    pred = torch.sigmoid(pred)
+    inter = ((pred * mask) * weit).sum(dim=(2,3))
+    union = ((pred + mask) * weit).sum(dim=(2,3))
+    wiou = 1-(inter+1)/(union-inter+1)
 
-    return (wbce+wiou).mean()
+    return (wbce + wiou).mean()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -51,12 +53,12 @@ if __name__ == "__main__":
     torch.cuda.set_device(opt.gpu)
 
     # TIPS: you also can use deeper network for better performance like channel=64
-    model_SINet = F3Net().cuda()
+    model_BSANet = BSANet().cuda()
 
-    optimizer = torch.optim.Adam(model_SINet.parameters(), opt.lr)
+    optimizer = torch.optim.Adam(model_BSANet.parameters(), opt.lr)
     LogitsBCE = torch.nn.BCEWithLogitsLoss()
 
-    net, optimizer = amp.initialize(model_SINet, optimizer, opt_level='O0')     # NOTES: Ox not 0x
+    net, optimizer = amp.initialize(model_BSANet, optimizer, opt_level='O0')
 
     train_loader = get_loader(opt.train_img_dir, opt.train_gt_dir, opt.train_edge_dir, batchsize=opt.batchsize,
                               trainsize=opt.trainsize, num_workers=12)
@@ -68,6 +70,6 @@ if __name__ == "__main__":
 
     for epoch_iter in range(1, opt.epoch):
         adjust_lr(optimizer, epoch_iter, opt.decay_rate, opt.decay_epoch)
-        trainer(train_loader=train_loader, model=model_SINet,
+        trainer(train_loader=train_loader, model=model_BSANet,
                 optimizer=optimizer, epoch=epoch_iter,
                 opt=opt, loss_func=structure_loss, total_step=total_step)

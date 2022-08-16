@@ -74,11 +74,8 @@ class test_dataset:
         self.testsize = testsize
         self.images = [image_root + f for f in os.listdir(image_root) if f.endswith('.jpg')]
         self.gts = [gt_root + f for f in os.listdir(gt_root) if f.endswith('.jpg') or f.endswith('.png')]
-        # self.edges = [edge_root + f for f in os.listdir(edge_root) if f.endswith('.jpg')
-        #               or f.endswith('.png')]
         self.images = sorted(self.images)
         self.gts = sorted(self.gts)
-        # self.edges = sorted(self.edges)
         self.transform = transforms.Compose([
             transforms.Resize((self.testsize, self.testsize)),
             transforms.ToTensor(),
@@ -95,11 +92,6 @@ class test_dataset:
         image = self.rgb_loader(self.images[self.index])
         image = self.transform(image).unsqueeze(0)
         gt = self.binary_loader(self.gts[self.index])
-        # edge = self.binary_loader(self.edges[self.index])
-        # edge = auto_canny(tensor_to_np(image))
-        # edge = torch.from_numpy(edge).unsqueeze(0).float()
-
-        # edge = self.edge_transform(edge).unsqueeze(0)
         name = self.images[self.index].split('/')[-1]
         if name.endswith('.jpg'):
             name = name.split('.jpg')[0] + '.png'

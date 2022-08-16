@@ -1,0 +1,6 @@
+.idea
+Dataset/*
+evaluation/GT/*
+evaluation/Result/*
+*.pth
+result.txt
