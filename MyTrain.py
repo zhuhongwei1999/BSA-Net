@@ -18,8 +18,8 @@ def structure_loss(pred, mask):
 
     # IOU loss
     pred = torch.sigmoid(pred)
-    inter = ((pred * mask) * weit).sum(dim=(2,3))
-    union = ((pred + mask) * weit).sum(dim=(2,3))
+    inter = ((pred * mask) * weit).sum(dim=(2, 3))
+    union = ((pred + mask) * weit).sum(dim=(2, 3))
     wiou = 1-(inter+1)/(union-inter+1)
 
     return (wbce + wiou).mean()
@@ -52,22 +52,17 @@ if __name__ == "__main__":
 
     torch.cuda.set_device(opt.gpu)
 
-    # TIPS: you also can use deeper network for better performance like channel=64
     model_BSANet = BSANet().cuda()
 
     optimizer = torch.optim.Adam(model_BSANet.parameters(), opt.lr)
     LogitsBCE = torch.nn.BCEWithLogitsLoss()
-
     net, optimizer = amp.initialize(model_BSANet, optimizer, opt_level='O0')
-
     train_loader = get_loader(opt.train_img_dir, opt.train_gt_dir, opt.train_edge_dir, batchsize=opt.batchsize,
                               trainsize=opt.trainsize, num_workers=12)
     total_step = len(train_loader)
-
     print('-' * 30, "\n[Training Dataset INFO]\nimg_dir: {}\ngt_dir: {}\nLearning Rate: {}\nBatch Size: {}\n"
                     "Training Save: {}\ntotal_num: {}\n".format(opt.train_img_dir, opt.train_gt_dir, opt.lr,
                                                               opt.batchsize, opt.save_model, total_step), '-' * 30)
-
     for epoch_iter in range(1, opt.epoch):
         adjust_lr(optimizer, epoch_iter, opt.decay_rate, opt.decay_epoch)
         trainer(train_loader=train_loader, model=model_BSANet,

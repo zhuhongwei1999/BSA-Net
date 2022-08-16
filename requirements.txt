@@ -1,0 +1,9 @@
+apex~=0.1
+torchvision~=0.8.2
+pillow~=8.1.0
+numpy~=1.20.1
+imageio~=2.9.0
+scikit-image~=0.18.1
+scipy~=1.2.1
+opencv-python~=4.5.1.48
+tqdm~=4.56.0

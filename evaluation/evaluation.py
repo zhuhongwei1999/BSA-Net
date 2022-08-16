@@ -4,8 +4,6 @@
 # @GitHub  : https://github.com/lartpang
 
 import os
-import sys
-
 import cv2
 from tqdm import tqdm
 
