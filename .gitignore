@@ -1,8 +1,0 @@
-.gitignore
-.idea
-Dataset/TestDataset
-Dataset/TrainDataset
-evaluation/GT/*
-evaluation/Result/*
-*.pth
-result.txt
