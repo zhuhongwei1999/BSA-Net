@@ -61,4 +61,4 @@ Copy the testing GT map (`./Dataset/TestDataset/*/GT`) `./evaluation/GT`, run `.
 
 ## Contact
 
-If you have any questions, feel free to E-mail me via: `zhuhongwei1999@gmail.com`
+If you have any questions, feel free to E-mail me via: zhuhongwei1999@gmail.com
